@@ -79,5 +79,13 @@ module OAuth
     def delete(path, headers = {})
       request(:delete, path, headers)
     end
+    
+    # Sign the Request object with the access token. Use this if you have an externally generated http request object you want to sign. The result can be used within the Autorization HTTP header.
+    #
+    #   @signature = @token.sign!(request)
+    #
+    def sign!(request, request_options = {})
+       consumer.sign!(request, self, request_options)
+    end
   end
 end
